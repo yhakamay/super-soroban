@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../atoms/create_party_fab.dart';
 import '../models/ss_user.dart';
 
 class CreatePartyPage extends StatefulWidget {
@@ -38,12 +39,12 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
                   labelText: 'Title',
                   icon: const Icon(Icons.wine_bar),
                   suffix: IconButton(
-                    onPressed: _saveTitleViaSuffix,
+                    onPressed: _saveTitle,
                     icon: const Icon(Icons.check),
                   ),
                 ),
                 validator: _emptyValidator,
-                onSaved: _saveTitle,
+                onSaved: (_) => _saveTitle(),
               ),
               const SizedBox(height: 16.0),
               TextFormField(
@@ -53,12 +54,12 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
                   labelText: 'Members',
                   icon: const Icon(Icons.people),
                   suffix: IconButton(
-                    onPressed: _saveMembersViaSuffix,
+                    onPressed: _addMember,
                     icon: const Icon(Icons.add),
                   ),
                 ),
                 validator: _emptyValidator,
-                onSaved: _saveMembers,
+                onSaved: (_) => _addMember(),
               ),
               SizedBox(
                 height: 80,
@@ -90,46 +91,15 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
     );
   }
 
-  void _saveTitle(newValue) {
-    setState(() {
-      _title = newValue ?? '';
-    });
-
-    _showTitleSavedSnackBar();
-  }
-
-  void _saveTitleViaSuffix() {
+  void _saveTitle() {
     setState(() {
       _title = _titleController.text;
     });
 
-    _showTitleSavedSnackBar();
+    _showSnackBar('Title saved!');
   }
 
-  void _showTitleSavedSnackBar() {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Title saved!'),
-      ),
-    );
-  }
-
-  void _saveMembers(newValue) {
-    setState(() {
-      _members.add(
-        SSUser(
-          uid: null,
-          displayName: newValue ?? '',
-          paymentMethods: null,
-        ),
-      );
-    });
-
-    _showMembersSavedSnackBar();
-  }
-
-  void _saveMembersViaSuffix() {
+  void _addMember() {
     setState(() {
       _members.add(
         SSUser(
@@ -140,14 +110,20 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       );
     });
 
-    _showMembersSavedSnackBar();
+    _showSnackBar('Member added!');
   }
 
-  void _showMembersSavedSnackBar() {
+  _removeMember(SSUser member) {
+    setState(() {
+      _members.remove(member);
+    });
+  }
+
+  void _showSnackBar(String message) {
     ScaffoldMessenger.of(context).hideCurrentSnackBar();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Text('Member saved!'),
+      SnackBar(
+        content: Text(message),
       ),
     );
   }
@@ -157,38 +133,5 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       return 'This field is required';
     }
     return null;
-  }
-
-  _removeMember(SSUser member) {
-    setState(() {
-      _members.remove(member);
-    });
-  }
-}
-
-class CreatePartyFAB extends StatelessWidget {
-  const CreatePartyFAB({
-    Key? key,
-    required GlobalKey<FormState> formKey,
-  })  : _formKey = formKey,
-        super(key: key);
-
-  final GlobalKey<FormState> _formKey;
-
-  @override
-  Widget build(BuildContext context) {
-    return FloatingActionButton.extended(
-      onPressed: () {
-        if (_formKey.currentState!.validate()) {
-          ScaffoldMessenger.of(context).hideCurrentSnackBar();
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(
-              content: Text('Processing Data'),
-            ),
-          );
-        }
-      },
-      label: const Text('Create Party'),
-    );
   }
 }
