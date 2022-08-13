@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterfire_ui/auth.dart';
 
+import '../atoms/new_party_fab.dart';
+
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -51,13 +53,7 @@ class _HomePageState extends State<HomePage> {
           avatarSize: 96.0,
         )
       ][_currentIndex],
-      floatingActionButton: _currentIndex == 0
-          ? const FloatingActionButton(
-              onPressed: null,
-              tooltip: 'Increment',
-              child: Icon(Icons.add),
-            )
-          : null,
+      floatingActionButton: _currentIndex == 0 ? const NewPartyFAB() : null,
     );
   }
 }
