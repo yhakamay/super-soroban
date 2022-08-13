@@ -23,12 +23,12 @@ class Party {
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
         'title': title,
-        'members': members.map((e) => e.toJson()).toList(),
-        'expenses': expenses.map((e) => e.toJson()).toList(),
+        'members': members?.map((e) => e.toJson()).toList(),
+        'expenses': expenses?.map((e) => e.toJson()).toList(),
       };
 
-  final String id;
+  final String? id;
   final String title;
-  final List<SSUser> members;
-  final List<Expense> expenses;
+  final List<SSUser>? members;
+  final List<Expense>? expenses;
 }

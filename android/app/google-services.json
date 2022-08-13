@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "510954039165",
+    "project_id": "motchi",
+    "storage_bucket": "motchi.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:510954039165:android:918614372798d6b3e34e14",
+        "android_client_info": {
+          "package_name": "com.yhakamay.motchi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "510954039165-h7ml8q3qs82laslc0ekp5inmo848537p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMqFy_d1iTe-Jb4xfdts7cREE2696dbAk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "510954039165-h7ml8q3qs82laslc0ekp5inmo848537p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "510954039165-fb6btv60hv4a1adn858d88d6804hftne.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.yhakamay.motchi"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

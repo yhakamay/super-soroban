@@ -22,7 +22,12 @@ class Motchi extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.deepOrange,
+        colorSchemeSeed: Colors.lime,
+        inputDecorationTheme: InputDecorationTheme(
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8.0),
+          ),
+        ),
       ),
       home: const AuthGate(),
     );
