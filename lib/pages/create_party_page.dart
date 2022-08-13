@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:motchi/models/party.dart';
 
 import '../atoms/create_party_fab.dart';
 import '../models/ss_user.dart';
@@ -83,7 +84,16 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
                 ),
               ),
               const SizedBox(height: 16.0),
-              CreatePartyFAB(formKey: _formKey),
+              CreatePartyFAB(
+                formKey: _formKey,
+                party: Party(
+                  // Will be assigned by Firestore
+                  id: null,
+                  title: _title,
+                  members: _members,
+                  expenses: null,
+                ),
+              ),
             ],
           ),
         ),
