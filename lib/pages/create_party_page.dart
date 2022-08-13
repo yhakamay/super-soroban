@@ -71,7 +71,10 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
                         padding: const EdgeInsets.only(right: 8.0),
                         child: Chip(
                           label: Text(member.displayName),
-                          deleteIcon: const Icon(Icons.close),
+                          deleteIcon: const Icon(
+                            Icons.cancel,
+                            size: 18.0,
+                          ),
                           onDeleted: () => _removeMember(member),
                         ),
                       ),
