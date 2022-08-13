@@ -14,7 +14,6 @@ dependencies:
   flutter:
     sdk: flutter
   flutterfire_ui: ^0.4.3+4
-  uuid: ^3.0.6
 
 dev_dependencies:
   flutter_test:

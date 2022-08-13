@@ -27,7 +27,7 @@ class Party {
         'expenses': expenses?.map((e) => e.toJson()).toList(),
       };
 
-  final String id;
+  final String? id;
   final String title;
   final List<SSUser>? members;
   final List<Expense>? expenses;
