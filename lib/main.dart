@@ -21,7 +21,7 @@ class Motchi extends StatelessWidget {
       title: 'Flutter Demo',
       theme: ThemeData(
         useMaterial3: true,
-        colorSchemeSeed: Colors.lime,
+        colorSchemeSeed: Colors.green,
         inputDecorationTheme: InputDecorationTheme(
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8.0),

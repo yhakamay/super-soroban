@@ -15,7 +15,7 @@ class PaymentMethodCard extends StatelessWidget {
 
   // PaymentMethodCard.readOnly
   const PaymentMethodCard.readOnly({
-    Key? key,
+    super.key,
     required this.id,
     required this.name,
     this.url,

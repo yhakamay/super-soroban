@@ -12,12 +12,12 @@ class Party {
 
   Party.fromJson(Map<String, dynamic> json)
       : id = json['id'],
-        title = json['title'],
-        members = (json['members'] as List<dynamic>)
-            .map((e) => SSUser.fromJson(e as Map<String, dynamic>))
+        title = json['title'] ?? '',
+        members = (json['members'] as List<dynamic>?)
+            ?.map((e) => SSUser.fromJson(e as Map<String, dynamic>))
             .toList(),
-        expenses = (json['expenses'] as List<dynamic>)
-            .map((e) => Expense.fromJson(e as Map<String, dynamic>))
+        expenses = (json['expenses'] as List<dynamic>?)
+            ?.map((e) => Expense.fromJson(e as Map<String, dynamic>))
             .toList();
 
   Map<String, dynamic> toJson() => <String, dynamic>{
