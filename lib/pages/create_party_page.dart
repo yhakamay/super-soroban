@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motchi/models/party.dart';
 
 import '../atoms/create_party_fab.dart';
+import '../atoms/new_party_form_field.dart';
 import '../models/ss_user.dart';
 
 class CreatePartyPage extends StatefulWidget {
@@ -33,34 +34,21 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                maxLength: 24,
+              NewPartyFormField(
                 controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                  icon: const Icon(Icons.wine_bar),
-                  suffix: IconButton(
-                    onPressed: _saveTitle,
-                    icon: const Icon(Icons.check),
-                  ),
-                ),
+                onPressed: _saveTitle,
+                labelText: 'Title',
+                iconData: Icons.wine_bar,
+                suffixIconData: Icons.check,
                 validator: _emptyValidator,
-                onSaved: (_) => _saveTitle(),
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
-                maxLength: 24,
+              NewPartyFormField(
                 controller: _membersController,
-                decoration: InputDecoration(
-                  labelText: 'Members',
-                  icon: const Icon(Icons.people),
-                  suffix: IconButton(
-                    onPressed: _addMember,
-                    icon: const Icon(Icons.add),
-                  ),
-                ),
-                validator: _emptyValidator,
-                onSaved: (_) => _addMember(),
+                onPressed: _addMember,
+                labelText: 'Add members',
+                iconData: Icons.people,
+                suffixIconData: Icons.add,
               ),
               SizedBox(
                 height: 80,

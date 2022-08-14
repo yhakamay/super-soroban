@@ -27,11 +27,7 @@ class _HomePageState extends State<HomePage> {
       ),
       bottomNavigationBar: HomePageNavigationBar(
         currentIndex: _currentIndex,
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        onDestinationSelected: _onDestinationSelected,
       ),
       body: [
         const PartiesScreen(),
@@ -39,5 +35,11 @@ class _HomePageState extends State<HomePage> {
       ][_currentIndex],
       floatingActionButton: _currentIndex == 0 ? const NewPartyFAB() : null,
     );
+  }
+
+  void _onDestinationSelected(index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }
