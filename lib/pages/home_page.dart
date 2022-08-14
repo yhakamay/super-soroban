@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../atoms/new_party_fab.dart';
 import '../atoms/profile_button.dart';
+import '../molecules/home_page_navigation_bar.dart';
 import '../organisms/payment_method_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,25 +24,13 @@ class _HomePageState extends State<HomePage> {
           ProfileButton(),
         ],
       ),
-      bottomNavigationBar: NavigationBar(
+      bottomNavigationBar: HomePageNavigationBar(
+        currentIndex: _currentIndex,
         onDestinationSelected: (index) {
           setState(() {
             _currentIndex = index;
           });
         },
-        selectedIndex: _currentIndex,
-        destinations: const [
-          NavigationDestination(
-            selectedIcon: Icon(Icons.wine_bar),
-            icon: Icon(Icons.wine_bar_outlined),
-            label: 'Parties',
-          ),
-          NavigationDestination(
-            selectedIcon: Icon(Icons.wallet),
-            icon: Icon(Icons.wallet_outlined),
-            label: 'Payment',
-          ),
-        ],
       ),
       body: [
         Center(
