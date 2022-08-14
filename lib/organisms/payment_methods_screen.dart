@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class PaymentMethodScreen extends StatelessWidget {
-  const PaymentMethodScreen({
+class PaymentMethodsScreen extends StatelessWidget {
+  const PaymentMethodsScreen({
     Key? key,
   }) : super(key: key);
 
@@ -11,7 +11,7 @@ class PaymentMethodScreen extends StatelessWidget {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: const [
-          Text('Payment'),
+          Text('Motchi'),
         ],
       ),
     );
