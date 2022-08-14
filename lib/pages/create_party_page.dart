@@ -5,6 +5,7 @@ import '../atoms/create_party_fab.dart';
 import '../atoms/member_chips_list_view.dart';
 import '../atoms/new_party_form_field.dart';
 import '../models/ss_user.dart';
+import '../utils.dart';
 
 class CreatePartyPage extends StatefulWidget {
   const CreatePartyPage({Key? key}) : super(key: key);
@@ -81,7 +82,7 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       _title = _titleController.text;
     });
 
-    _showSnackBar('Title saved!');
+    Utils.showSnackBar(context, 'Title saved!');
   }
 
   void _addMember() {
@@ -95,22 +96,13 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       );
     });
 
-    _showSnackBar('Member added!');
+    Utils.showSnackBar(context, 'Member added!');
   }
 
   void _removeMember(SSUser member) {
     setState(() {
       _members.remove(member);
     });
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
   }
 
   String? _emptyValidator(value) {

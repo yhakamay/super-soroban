@@ -3,6 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:motchi/models/party.dart';
 
+import '../utils.dart';
+
 class CreatePartyFAB extends StatefulWidget {
   const CreatePartyFAB({
     Key? key,
@@ -23,18 +25,15 @@ class _CreatePartyFABState extends State<CreatePartyFAB> {
     return FloatingActionButton.extended(
       onPressed: () async {
         if (widget.formKey.currentState!.validate()) {
-          _hideCurrentSnackBar(context);
-          _showSnackBar(context, 'Creating party...');
+          Utils.showSnackBar(context, 'Creating party...');
 
           await _createPartyOnFirestore();
           await Future.delayed(const Duration(milliseconds: 500));
 
           if (!mounted) return;
-          _hideCurrentSnackBar(context);
-          _showSnackBar(context, 'Party created!');
+          Utils.showSnackBar(context, 'Party created!');
         } else {
-          _hideCurrentSnackBar(context);
-          _showSnackBar(context, 'Please fill out all fields.');
+          Utils.showSnackBar(context, 'Please fill out all fields.');
         }
       },
       label: const Text('Create Party'),
@@ -60,16 +59,5 @@ class _CreatePartyFABState extends State<CreatePartyFAB> {
       'id': id,
     });
     print('added party to firestore');
-  }
-
-  void _hideCurrentSnackBar(BuildContext context) =>
-      ScaffoldMessenger.of(context).hideCurrentSnackBar();
-
-  void _showSnackBar(BuildContext context, String message) {
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
   }
 }
