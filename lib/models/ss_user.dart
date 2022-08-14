@@ -10,8 +10,8 @@ class SSUser {
   SSUser.fromJson(Map<String, dynamic> json)
       : uid = json['uid'],
         displayName = json['displayName'],
-        paymentMethods = (json['paymentMethods'] as List<dynamic>)
-            .map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
+        paymentMethods = (json['paymentMethods'] as List<dynamic>?)
+            ?.map((e) => PaymentMethod.fromJson(e as Map<String, dynamic>))
             .toList();
 
   Map<String, dynamic> toJson() => <String, dynamic>{

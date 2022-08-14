@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../atoms/create_party_fab.dart';
-import '../atoms/member_chips_list_view.dart';
+import '../molecules/member_chips_list_view.dart';
 import '../atoms/new_party_form_field.dart';
 import '../models/party.dart';
 import '../models/ss_user.dart';
