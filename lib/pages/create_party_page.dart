@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:motchi/models/party.dart';
 
 import '../atoms/create_party_fab.dart';
+import '../atoms/member_chips_list_view.dart';
+import '../atoms/new_party_form_field.dart';
+import '../models/party.dart';
 import '../models/ss_user.dart';
+import '../utils.dart';
 
 class CreatePartyPage extends StatefulWidget {
   const CreatePartyPage({Key? key}) : super(key: key);
@@ -33,54 +36,27 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              TextFormField(
-                maxLength: 24,
+              NewPartyFormField(
                 controller: _titleController,
-                decoration: InputDecoration(
-                  labelText: 'Title',
-                  icon: const Icon(Icons.wine_bar),
-                  suffix: IconButton(
-                    onPressed: _saveTitle,
-                    icon: const Icon(Icons.check),
-                  ),
-                ),
+                onPressed: _saveTitle,
+                labelText: 'Title',
+                iconData: Icons.wine_bar,
+                suffixIconData: Icons.check,
                 validator: _emptyValidator,
-                onSaved: (_) => _saveTitle(),
               ),
               const SizedBox(height: 16.0),
-              TextFormField(
-                maxLength: 24,
+              NewPartyFormField(
                 controller: _membersController,
-                decoration: InputDecoration(
-                  labelText: 'Members',
-                  icon: const Icon(Icons.people),
-                  suffix: IconButton(
-                    onPressed: _addMember,
-                    icon: const Icon(Icons.add),
-                  ),
-                ),
-                validator: _emptyValidator,
-                onSaved: (_) => _addMember(),
+                onPressed: _addMember,
+                labelText: 'Add members',
+                iconData: Icons.people,
+                suffixIconData: Icons.add,
               ),
               SizedBox(
                 height: 80,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    const SizedBox(width: 40.0),
-                    for (final member in _members)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Chip(
-                          label: Text(member.displayName),
-                          deleteIcon: const Icon(
-                            Icons.cancel,
-                            size: 18.0,
-                          ),
-                          onDeleted: () => _removeMember(member),
-                        ),
-                      ),
-                  ],
+                child: MemberChipsListView(
+                  members: _members,
+                  onDeleted: _removeMember,
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -106,7 +82,7 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       _title = _titleController.text;
     });
 
-    _showSnackBar('Title saved!');
+    Utils.showSnackBar(context, 'Title saved!');
   }
 
   void _addMember() {
@@ -120,22 +96,13 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
       );
     });
 
-    _showSnackBar('Member added!');
+    Utils.showSnackBar(context, 'Member added!');
   }
 
-  _removeMember(SSUser member) {
+  void _removeMember(SSUser member) {
     setState(() {
       _members.remove(member);
     });
-  }
-
-  void _showSnackBar(String message) {
-    ScaffoldMessenger.of(context).hideCurrentSnackBar();
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text(message),
-      ),
-    );
   }
 
   String? _emptyValidator(value) {

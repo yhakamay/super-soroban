@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutterfire_ui/auth.dart';
 
-import '../atoms/new_party_fab.dart';
+import '../atoms/open_add_payment_method_fab.dart';
+import '../atoms/open_new_party_fab.dart';
+import '../atoms/profile_button.dart';
+import '../molecules/home_page_navigation_bar.dart';
+import '../organisms/parties_screen.dart';
+import '../organisms/payment_methods_screen.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -18,42 +22,27 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Motchi'),
-      ),
-      bottomNavigationBar: NavigationBar(
-        onDestinationSelected: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        selectedIndex: _currentIndex,
-        destinations: const [
-          NavigationDestination(
-            icon: Icon(Icons.wine_bar),
-            label: 'Parties',
-          ),
-          NavigationDestination(
-            icon: Icon(Icons.account_box_rounded),
-            label: 'Profile',
-          ),
+        actions: const [
+          ProfileButton(),
         ],
       ),
+      bottomNavigationBar: HomePageNavigationBar(
+        currentIndex: _currentIndex,
+        onDestinationSelected: _onDestinationSelected,
+      ),
       body: [
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Motchi'),
-            ],
-          ),
-        ),
-        const ProfileScreen(
-          providerConfigs: [
-            EmailProviderConfiguration(),
-          ],
-          avatarSize: 96.0,
-        )
+        const PartiesScreen(),
+        const PaymentMethodsScreen(),
       ][_currentIndex],
-      floatingActionButton: _currentIndex == 0 ? const NewPartyFAB() : null,
+      floatingActionButton: _currentIndex == 0
+          ? const OpenNewPartyFAB()
+          : const OpenAddPaymentMethodFAB(),
     );
+  }
+
+  void _onDestinationSelected(index) {
+    setState(() {
+      _currentIndex = index;
+    });
   }
 }

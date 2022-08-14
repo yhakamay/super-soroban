@@ -17,6 +17,6 @@ class PaymentMethod {
       };
 
   final String name;
-  final Uri? url;
+  final String? url;
   final String? description;
 }
