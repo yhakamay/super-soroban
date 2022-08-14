@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:motchi/models/party.dart';
 
 import '../atoms/create_party_fab.dart';
+import '../atoms/member_chips_list_view.dart';
 import '../atoms/new_party_form_field.dart';
 import '../models/ss_user.dart';
 
@@ -52,23 +53,9 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
               ),
               SizedBox(
                 height: 80,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  children: [
-                    const SizedBox(width: 40.0),
-                    for (final member in _members)
-                      Padding(
-                        padding: const EdgeInsets.only(right: 8.0),
-                        child: Chip(
-                          label: Text(member.displayName),
-                          deleteIcon: const Icon(
-                            Icons.cancel,
-                            size: 18.0,
-                          ),
-                          onDeleted: () => _removeMember(member),
-                        ),
-                      ),
-                  ],
+                child: MemberChipsListView(
+                  members: _members,
+                  onDeleted: _removeMember,
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -111,7 +98,7 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
     _showSnackBar('Member added!');
   }
 
-  _removeMember(SSUser member) {
+  void _removeMember(SSUser member) {
     setState(() {
       _members.remove(member);
     });
