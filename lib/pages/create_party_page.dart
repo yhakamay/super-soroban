@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:motchi/atoms/members_text_form_field.dart';
 
 import '../atoms/create_party_fab.dart';
 import '../molecules/member_chips_list_view.dart';
-import '../atoms/new_party_form_field.dart';
+import '../atoms/title_text_form_field.dart';
 import '../models/party.dart';
 import '../models/ss_user.dart';
 import '../utils.dart';
@@ -36,21 +37,15 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              NewPartyFormField(
+              TitleTextFormField(
                 controller: _titleController,
-                onPressed: _saveTitle,
-                labelText: 'Title',
-                iconData: Icons.wine_bar,
-                suffixIconData: Icons.check,
+                onSaved: _saveTitle,
                 validator: _emptyValidator,
               ),
               const SizedBox(height: 16.0),
-              NewPartyFormField(
+              MembersTextFormField(
                 controller: _membersController,
-                onPressed: _addMember,
-                labelText: 'Add members',
-                iconData: Icons.people,
-                suffixIconData: Icons.add,
+                onSaved: _addMember,
               ),
               SizedBox(
                 height: 80,
@@ -95,6 +90,8 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
         ),
       );
     });
+
+    _membersController.clear();
 
     Utils.showSnackBar(context, 'Member added!');
   }
