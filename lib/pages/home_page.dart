@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../atoms/new_party_fab.dart';
 import '../atoms/profile_button.dart';
 import '../molecules/home_page_navigation_bar.dart';
+import '../organisms/parties_screen.dart';
 import '../organisms/payment_method_screen.dart';
 
 class HomePage extends StatefulWidget {
@@ -33,14 +34,7 @@ class _HomePageState extends State<HomePage> {
         },
       ),
       body: [
-        Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Text('Motchi'),
-            ],
-          ),
-        ),
+        const PartiesScreen(),
         const PaymentMethodScreen(),
       ][_currentIndex],
       floatingActionButton: _currentIndex == 0 ? const NewPartyFAB() : null,
