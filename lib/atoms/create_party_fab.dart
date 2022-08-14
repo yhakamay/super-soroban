@@ -31,9 +31,10 @@ class _CreatePartyFABState extends State<CreatePartyFAB> {
           await Future.delayed(const Duration(milliseconds: 500));
 
           if (!mounted) return;
+          Navigator.of(context).pop();
           Utils.showSnackBar(context, 'Party created!');
         } else {
-          Utils.showSnackBar(context, 'Please fill out all fields.');
+          // Do nothing
         }
       },
       label: const Text('Create Party'),
@@ -58,6 +59,5 @@ class _CreatePartyFABState extends State<CreatePartyFAB> {
       // Actually this is not necessary, but document cannot be blank.
       'id': id,
     });
-    print('added party to firestore');
   }
 }

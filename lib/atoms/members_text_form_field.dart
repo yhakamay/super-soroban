@@ -18,7 +18,7 @@ class MembersTextFormField extends StatelessWidget {
       maxLength: 8,
       controller: controller,
       decoration: InputDecoration(
-        labelText: 'Add members',
+        labelText: 'Members',
         icon: const Icon(Icons.people),
         suffix: IconButton(
           onPressed: onSaved,

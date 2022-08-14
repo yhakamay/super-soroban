@@ -6,7 +6,6 @@ import '../molecules/member_chips_list_view.dart';
 import '../atoms/title_text_form_field.dart';
 import '../models/party.dart';
 import '../models/ss_user.dart';
-import '../utils.dart';
 
 class CreatePartyPage extends StatefulWidget {
   const CreatePartyPage({Key? key}) : super(key: key);
@@ -76,8 +75,6 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
     setState(() {
       _title = _titleController.text;
     });
-
-    Utils.showSnackBar(context, 'Title saved!');
   }
 
   void _addMember() {
@@ -92,8 +89,6 @@ class _CreatePartyPageState extends State<CreatePartyPage> {
     });
 
     _membersController.clear();
-
-    Utils.showSnackBar(context, 'Member added!');
   }
 
   void _removeMember(SSUser member) {
